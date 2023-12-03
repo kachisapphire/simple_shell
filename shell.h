@@ -16,5 +16,8 @@ void get_input();
 void execute(char *array[]);
 void builtins_exit(void);
 void builtins_cd(char *arg);
+int strlength(char *s);
+char *strcopy(char *dest, char *src);
+int strcomp(char *s1, char *s2);
 
 #endif

@@ -64,9 +64,9 @@ void get_input(void)
 				idx++;
 			}
 			array[idx] = NULL;
-			if (strcmp(array[0], "cd") == 0)
+			if (strcomp(array[0], "cd") == 0)
 				builtins_cd(array[1]);
-			else if (strcmp(array[0], "exit") == 0)
+			else if (strcomp(array[0], "exit") == 0)
 				builtins_exit();
 			else
 				execute(array);

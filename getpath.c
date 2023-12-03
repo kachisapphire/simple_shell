@@ -14,8 +14,8 @@ char *check_path(char *command)
 
 	while (token != NULL)
 	{
-		strcpy(buffer, token);
-		if (buffer[strlen(buffer) - 1] != '/')
+		strcopy(buffer, token);
+		if (buffer[strlength(buffer) - 1] != '/')
 		{
 			strcat(buffer, "/");
 		}
