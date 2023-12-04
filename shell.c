@@ -83,3 +83,25 @@ int main(void)
 	get_input();
 	return (0);
 }
+/**
+ *stringdup - funtion that duplicates
+ *@str: string to duplicate
+ *Return: copy
+ */
+char *stringdup(char *str)
+{
+	char *copy;
+	int len = 0;
+	int i;
+
+	if (str == NULL)
+		return (NULL);
+	for (i = 0; str[i] != '\0'; i++)
+		len++;
+	copy = malloc(sizeof (char) * len + 1);
+	if (copy == NULL)
+	       return (NULL);
+	for (i = 0; str[i] != '\0'; i++)
+		copy[i] = str[i];
+	return (copy);
+}	

@@ -19,5 +19,7 @@ void builtins_cd(char *arg);
 int strlength(char *s);
 char *strcopy(char *dest, char *src);
 int strcomp(char *s1, char *s2);
+char *stringcat(char *dest, char *src);
+char *stringdup(char *str);
 
 #endif

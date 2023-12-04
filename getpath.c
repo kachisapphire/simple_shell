@@ -7,7 +7,7 @@
 char *check_path(char *command)
 {
 	char *path = getenv("PATH");
-	char *path_cpy = strdup(path);
+	char *path_cpy = stringdup(path);
 	char *delim = ":";
 	char buffer[1024];
 	char *token = strtok(path_cpy, delim);
@@ -17,13 +17,13 @@ char *check_path(char *command)
 		strcopy(buffer, token);
 		if (buffer[strlength(buffer) - 1] != '/')
 		{
-			strcat(buffer, "/");
+			stringcat(buffer, "/");
 		}
-		strcat(buffer, command);
+		stringcat(buffer, command);
 		if (access(buffer, F_OK) == 0 && access(buffer, X_OK) == 0)
 		{
 			free(path_cpy);
-			return (strdup(buffer));
+			return (stringdup(buffer));
 		}
 		token = strtok(NULL, delim);
 	}
