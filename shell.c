@@ -31,6 +31,39 @@ void execute(char *array[])
 		wait(&status);
 }
 /**
+ *input_builtins - function to implement builtins
+ *@line: string to read
+ *Return: void
+ */
+void input_builtins(char *line)
+{
+	char *delim = " \n";
+	char *array[1024], *token;
+	int idx;
+
+	idx = 0;
+	token = strtok(line, delim);
+	while (token != NULL)
+	{
+		array[idx] = token;
+		token = strtok(NULL, delim);
+		idx++;
+	}
+	array[idx] = NULL;
+	if (strcomp(array[0], "cd") == 0)
+		builtins_cd(array[1]);
+	else if (strcomp(array[0], "exit") == 0)
+		builtins_exit();
+/*	else if (strcomp(array[0], "printenv") == 0 || strcomp(array[0], "env") == 0)
+	{
+		printenv(env);
+		continue;
+	}*/
+
+	else
+		execute(array);
+}
+/**
  *get_input - read users input
  *Return: void
  */
@@ -38,8 +71,7 @@ void get_input(void)
 {
 	ssize_t str;
 	size_t len = 0;
-	char *delim = " \n", *line = NULL;
-	char *array[1024], *token;
+	char *line = NULL;
 
 	while (1)
 	{
@@ -47,30 +79,19 @@ void get_input(void)
 		str = getline(&line, &len, stdin);
 		if (str == -1)
 		{
-			perror("Error getting input");
-			exit(EXIT_FAILURE);
+			if (feof(stdin))
+				exit(EXIT_SUCCESS);
+			else
+			{
+				perror("Error getting input");
+				free(line);
+				exit(EXIT_FAILURE);
+			}
 		}
 		else if (str == 1)
 			continue;
 		else
-		{
-			int idx = 0;
-
-			token = strtok(line, delim);
-			while (token != NULL)
-			{
-				array[idx] = token;
-				token = strtok(NULL, delim);
-				idx++;
-			}
-			array[idx] = NULL;
-			if (strcomp(array[0], "cd") == 0)
-				builtins_cd(array[1]);
-			else if (strcomp(array[0], "exit") == 0)
-				builtins_exit();
-			else
-				execute(array);
-		}
+			input_builtins(line);
 	}
 	free(line);
 }
@@ -98,10 +119,10 @@ char *stringdup(char *str)
 		return (NULL);
 	for (i = 0; str[i] != '\0'; i++)
 		len++;
-	copy = malloc(sizeof (char) * len + 1);
+	copy = malloc(sizeof(char) * len + 1);
 	if (copy == NULL)
-	       return (NULL);
+		return (NULL);
 	for (i = 0; str[i] != '\0'; i++)
 		copy[i] = str[i];
 	return (copy);
-}	
+}

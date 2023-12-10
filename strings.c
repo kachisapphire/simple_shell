@@ -75,3 +75,45 @@ char *stringcat(char *dest, char *src)
 	dest[lendest + lensrc] = '\0';
 	return (dest);
 }
+/**
+ *
+ *
+ *
+ */
+/*char* stringtok(char *str, const char *delimeter)
+{
+	int len = strlength(str);
+	char *alpha = (char *)malloc((len + 1) * sizeof(char));
+	int i, k, j = 0;
+	int delim, d;
+	int delimlen = strlength(delimeter);
+
+	for (i = 0; i <= len; i++)
+	{
+		delim = 0;
+		for (d = 0; d < delimlen; d++)
+		{
+			if (str[i] == delimeter[d] || str[i] == '\0')
+			{
+				delim = 1;
+				break
+			}
+		}
+		if (delim)
+		{
+			alpha[j] = '\0';
+			if (j > 0)
+			{
+				for (k = 0; alpha[k] != '\0'; k++)
+				{
+					_putchar(alpha[k]);
+					_putchar('\n');
+					j = 0;
+				}
+			}
+			else
+				alpha[j++] = str[i];
+		}
+	}
+	return (alpha);
+}*/

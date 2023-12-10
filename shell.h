@@ -21,5 +21,7 @@ char *strcopy(char *dest, char *src);
 int strcomp(char *s1, char *s2);
 char *stringcat(char *dest, char *src);
 char *stringdup(char *str);
+void stringtok(char *str, const char *delimeter);
+int _putchar(char c);
 
 #endif
